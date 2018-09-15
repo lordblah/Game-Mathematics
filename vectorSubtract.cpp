@@ -38,17 +38,19 @@ using namespace std;
 
 int main(int argc, char** args)
 {
+    //point of pac-man
     Point p; //(1,0)
     p.x = 1;
     p.y = 0;
-
+    //point of iggy the blue ghost
     Point i;
     i.x = 1;
     i.y = 1;
 
+    //Vector variable creation
     Vector v;
-    v.x= 2;
-    v.y = 3;
+    v.x= 0;
+    v.y = 0;
 
     v = p - i;
 
