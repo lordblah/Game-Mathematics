@@ -1,0 +1,102 @@
+#include <iostream>
+#include <math.h>
+
+//a class that represents Vectos
+
+class Vector
+{
+public:
+    Vector() {}
+    //Class Constructor
+    Vector(float X, float Y)
+    {
+        x = X;
+        y = Y;
+    }
+    float Length() const;
+    float LengthSqr()const;
+
+    Vector operator*(float s) const;
+    Vector operator/(float s) const;
+
+    float x,y;
+};
+//A class that will represent the points
+class Point
+{
+public:
+    Point AddVector(Vector v);
+
+    float x,y;
+};
+
+Vector Vector::operator*(float s) const
+{
+    Vector scaled;
+    scaled.x = x*s;
+    scaled.y = y *s;
+    return scaled;
+}
+Vector Vector::operator/(float s) const
+{
+    Vector scaled;
+    scaled.x = x/s;
+    scaled.y = y/s;
+    return scaled;
+}
+
+
+//This function will get the length of a vector by squaring
+//the points associated with that vector
+float Vector::Length()const
+{
+    float length;
+    length = sqrt(x*x + y*y);
+    return length;
+}
+//A faster way of calculating distance bewtween two objects
+float Vector::LengthSqr()const
+{
+    float length;
+    length = (x*x + y*y);
+    return length;
+}
+//An overloader used to subtract two vector points.
+Vector operator-(Point a, Point b)
+{
+    Vector v;
+    v.x = a.x - b.x;
+    v.y = a.y - b.y;
+
+    return v;
+}
+
+//Point class function that will add the Vector points
+Point Point::AddVector(Vector v)
+{
+    Point p2;
+    p2.x = x+ v.x;
+    p2.y = y + v.y;
+
+    return p2;
+}
+using namespace std;
+
+int main(int argc, char** args)
+{
+    Vector v(3,4);
+
+    cout << "Pac-man initial speed: " << v.Length() << endl;
+
+    Vector doubled;
+    doubled = v* 2;
+
+    cout << "Pac-man doubled speed: " << doubled.Length() << endl;
+
+    Vector halved;
+    halved = v /2;
+
+    cout << "Pac-man halved speed: " << halved.Length() << endl;
+
+    return 0;
+}
